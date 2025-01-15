@@ -528,6 +528,15 @@ public class Mail {
   }
 
   /**
+   * Appends to the email's list of reply to addresses.
+   *
+   * @param replyTo the address to append to the list of reply to addresses.
+   */
+  public void addReplyTo(Email replyTo) {
+    this.replyToList = addToList(replyTo, this.replyToList);
+  }
+
+  /**
    * Create a string representation of the Mail object JSON.
    *
    * @return a JSON string.
