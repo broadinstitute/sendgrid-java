@@ -241,6 +241,22 @@ public class Example {
     return mail;
   }
 
+  // Multiple Reply-To addresses on a Mail
+  public static Mail buildMultipleReplyToEmail() {
+    Email from = new Email("from@example.com");
+    String subject = "Hello World from the Twilio SendGrid Java Library";
+    Email to = new Email("to@example.com");
+    Content content = new Content("text/plain", "some text here");
+    Mail mail = new Mail(from, subject, to, content);
+
+    Email replyTo1 = new Email("replyto1@example.com");
+    Email replyTo2 = new Email("replyto2@example.com");
+    mail.setReplyTo(Arrays.asList(replyTo1, replyTo2));
+
+    return mail;
+  }
+
+
   public static void baselineExample() throws IOException {
     final Mail helloWorld = buildHelloEmail();
     send(helloWorld);
@@ -254,6 +270,11 @@ public class Example {
   public static void dynamicTemplateExample() throws IOException {
     final Mail dynamicTemplate = buildDynamicTemplate();
     send(dynamicTemplate);
+  }
+
+  public static void MultipleReplyToExample() throws IOException {
+    final Mail multipleReplyTo = buildMultipleReplyToEmail();
+    send(multipleReplyTo);
   }
 
   private static void send(final Mail mail) throws IOException {
